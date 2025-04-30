@@ -1,0 +1,8 @@
+rtsetparams(44100, 2)
+load("MBRASS")
+bus_config("MBRASS", "out 0-1")
+
+bamp = maketable("line", 1000, 0,0, 1,1, 2,0)
+slide = maketable("line", "nonorm", 1000, 0, 100, 1, 400, 3, 200)
+lipfilt = makeLFO("sine", $2, 250, 400)
+MBRASS(0, 60, 4000, $1*0.25, slide, lipfilt, 0.3, $4, bamp)

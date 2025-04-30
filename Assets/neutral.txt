@@ -1,0 +1,11 @@
+rtsetparams(44100, 2)
+load("MSAXOFONY")
+bus_config("MSAXOFONY", "out 0-1")
+
+ampenv = maketable("line", 1000, 0,1, $2-0.1,1, $2,0)
+pan = $4
+
+freq = $1 + irand(-12, 12)
+
+MSAXOFONY(0, $2, 10000 * ampenv, freq, 0.2, 0.6, 0.5, 0.3, 0.5, pan)
+

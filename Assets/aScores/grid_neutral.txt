@@ -1,0 +1,8 @@
+rtsetparams(44100, 2)
+load("WAVETABLE")
+bus_config("WAVETABLE", "out 0-1")
+
+
+wave = maketable("wave", 1000, "buzz")
+ampenv = maketable("line", 1000, 0,1, $2-0.2,1, $2,0)
+WAVETABLE(0, 5, 10000 * ampenv, $1 *0.5, $3, wave)

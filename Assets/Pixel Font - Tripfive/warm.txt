@@ -1,0 +1,8 @@
+reset(44100)
+load("STRUM2")
+
+bus_config("STRUM2", "out 0-1")
+
+ampenv = maketable("line", 1000, 0,0, 0.1,1, $2-0.1,1, $2,0)
+
+STRUM2(0, $2, 10000 * ampenv, $1, $4, $2, $5)

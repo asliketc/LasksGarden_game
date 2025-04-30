@@ -1,0 +1,14 @@
+rtsetparams(44100, 2)
+load("MBOWED")
+bus_config("MBOWED", "out 0-1")
+
+ampenv = maketable("line", 1000, 0,1, $2-0.1,1, $2,0)
+bowvel = maketable("wave3", 1000, 1, 1, 0)
+bowpress = maketable("line", 1000, 0,1, 1,1)
+bowpos = maketable("line", 1000, 0,1, 1,0, 2,1)
+vib = maketable("wave", 1000, "sine")
+
+freq = $1 + irand(-20, 20)  // add soft random color
+pan = $4
+
+MBOWED(0, $2, 15000 * ampenv, freq, 5, 7, 0.02, pan, bowvel, bowpress, bowpos, vib)

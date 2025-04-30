@@ -1,0 +1,6 @@
+rtsetparams(44100, 2)
+load("STRUM2")
+bus_config("STRUM2", "out 0-1")
+
+ampenv = maketable("line", 1000, 0,1, $2-0.2,1, $2,0)
+STRUM2(0, $2, 7000 * ampenv, $1 *0.5, 2.0, $2, $4)

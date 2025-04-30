@@ -1,0 +1,14 @@
+rtsetparams(44100, 2)
+load("MBLOWHOLE")
+bus_config("MBLOWHOLE", "out 0-1")
+
+notearray = {9.00, 8.09, 8.07, 8.04, 8.02}  // C5 A G E D
+ampenv = maketable("line", 1000, 0,1, $2-0.1,1, $2,0)
+start = 0
+
+for (i = 0; i < 6; i = i + 1) {
+    pch = notearray[i]
+    freq = cpspch(pch)
+    MBLOWHOLE(start, 0.5, 8500 * ampenv, freq, 0.2, 0.5, 0.4, irand(0,1), $4)
+    start = start + 0.3
+}

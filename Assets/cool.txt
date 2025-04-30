@@ -1,0 +1,12 @@
+rtsetparams(44100, 2)
+load("MBLOWHOLE")
+bus_config("MBLOWHOLE", "out 0-1")
+
+ampenv = maketable("line", 1000, 0,1, $2-0.1,1, $2,0)
+vib = maketable("wave", 1000, "sine")
+
+freq = $1 + irand(-15, 15)
+noise = irand(0, 1)
+pan = $4
+
+MBLOWHOLE(0, $2, 12000 * ampenv, freq, 0.3, 0.7, 0.4, noise, pan)

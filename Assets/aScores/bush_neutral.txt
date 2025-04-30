@@ -1,0 +1,11 @@
+rtsetparams(44100, 2)
+load("MBOWED")
+bus_config("MBOWED", "out 0-1")
+
+ampenv = maketable("line", 1000, 0,1, $2-0.1,1, $2,0)
+bowvel = makeLFO("sine", 0.5, 0.2, 0.8)
+bowpress = maketable("line", 1000, 0,1, 1,1)
+bowpos = maketable("line", 1000, 0,1, 2,0, 3,1)
+vib = maketable("wave", 1000, "sine")
+
+MBOWED(0, 60, 5000 * ampenv, $1 *0.40 5, 8, 0.02, $4, bowvel, bowpress, bowpos, vib)
